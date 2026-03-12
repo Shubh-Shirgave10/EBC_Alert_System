@@ -46,7 +46,7 @@ def create_app():
     mongoengine.connect(host=mongodb_uri, db='phisheye')
 
     # Extensions
-    CORS(app)
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
     jwt.init_app(app)
     ma.init_app(app)
     limiter.init_app(app)
