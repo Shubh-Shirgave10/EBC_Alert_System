@@ -1,6 +1,5 @@
 const CONFIG = {
-    // We are forcing the live Render URL to ensure no "localhost" leak occurs.
-    API_BASE: 'https://phisheye-2-dbpr.onrender.com'
+    API_BASE: 'http://localhost:10000'
 };
 console.log("PhishEye Config Loaded: ", CONFIG.API_BASE);
 window.CONFIG = CONFIG;

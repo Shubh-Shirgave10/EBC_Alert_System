@@ -5,7 +5,7 @@ from flask_jwt_extended import (
 )
 from ..models.user import User
 from ..models.api_key import APIKey
-from .. import db, limiter
+from .. import limiter
 from ..utils.logger import log_event
 from ..services.twilio_otp import send_otp, verify_otp
 import pyotp
@@ -16,7 +16,7 @@ auth_bp = Blueprint('auth', __name__)
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    if User.query.filter_by(email=data.get('email')).first():
+    if User.objects(email=data.get('email')).first():
         return jsonify({"message": "User already exists"}), 409
     
     new_user = User(email=data['email'], phone=data.get('phone'))
@@ -24,13 +24,11 @@ def register():
     
     # Generate OTP secret (legacy TOTP support)
     new_user.otp_secret = pyotp.random_base32()
-    
-    db.session.add(new_user)
-    db.session.commit()
+    new_user.save()
     
     return jsonify({
         "message": "User registered successfully.",
-        "user_id": new_user.id
+        "user_id": str(new_user.id)
     }), 201
 
 @auth_bp.route('/login', methods=['POST'])
@@ -43,7 +41,7 @@ def login():
     email = data.get('email')
     password = data.get('password')
 
-    user = User.query.filter_by(email=email).first()
+    user = User.objects(email=email).first()
     
     if not user or not user.check_password(password):
         log_event(email, 'LOGIN_ATTEMPT', 'FAILED', 'Invalid credentials')
@@ -52,12 +50,12 @@ def login():
     access_token = create_access_token(identity=str(user.id))
     refresh_token = create_refresh_token(identity=str(user.id))
 
-    log_event(user.id, 'LOGIN', 'SUCCESS')
+    log_event(str(user.id), 'LOGIN', 'SUCCESS')
 
     return jsonify({
         "access_token": access_token,
         "refresh_token": refresh_token,
-        "user_id": user.id,
+        "user_id": str(user.id),
         "email": user.email
     }), 200
 
@@ -66,11 +64,10 @@ def forgot_password():
     data = request.get_json()
     email = data.get('email')
     
-    user = User.query.filter_by(email=email).first()
+    user = User.objects(email=email).first()
     if not user or not user.phone:
         return jsonify({"message": "User not found or phone number not set"}), 404
     
-    # Send OTP using our service
     result = send_otp(user.phone)
     if result['success']:
         return jsonify({"message": "OTP sent to your registered mobile number", "phone": user.phone}), 200
@@ -89,13 +86,11 @@ def reset_password():
     if not v_result['success']:
         return jsonify({"message": v_result['message']}), 401
     
-    # OTP verified, change password
-    user = User.query.filter_by(phone=phone).first()
+    user = User.objects(phone=phone).first()
     if not user:
         return jsonify({"message": "User not found"}), 404
         
     user.set_password(new_password)
-    db.session.commit()
+    user.save()
     
     return jsonify({"message": "Password reset successfully. Please login with your new password."}), 200
-

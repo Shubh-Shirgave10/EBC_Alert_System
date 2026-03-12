@@ -114,7 +114,7 @@ class ScanService:
         # Database Check for known phishing URLs
         try:
             from ..models.scan import Scan
-            existing_scan = Scan.query.filter_by(url=url, result="Malicious").first()
+            existing_scan = Scan.objects(url=url, result="Malicious").first()
             if existing_scan:
                 results["status"] = "Malicious"
                 results["risk_score"] = 100

@@ -1,11 +1,12 @@
 from .. import db
+from datetime import datetime
 
-class Extension(db.Model):
-    __tablename__ = 'extension'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    device_id = db.Column(db.String(120), nullable=False)
-    browser = db.Column(db.String(50), nullable=True)
-    version = db.Column(db.String(20), nullable=True)
-    last_active = db.Column(db.DateTime, nullable=True)
-    last_url = db.Column(db.String(500), nullable=True)
+class Extension(db.Document):
+    meta = {'collection': 'extensions'}
+    
+    user_id = db.StringField(required=True)
+    device_id = db.StringField(max_length=120, required=True)
+    browser = db.StringField(max_length=50)
+    version = db.StringField(max_length=20)
+    last_active = db.DateTimeField()
+    last_url = db.StringField(max_length=500)
