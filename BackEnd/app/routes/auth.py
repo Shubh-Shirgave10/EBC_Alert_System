@@ -15,21 +15,35 @@ auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/register', methods=['POST'])
 def register():
-    data = request.get_json()
-    if User.objects(email=data.get('email')).first():
-        return jsonify({"message": "User already exists"}), 409
-    
-    new_user = User(email=data['email'], phone=data.get('phone'))
-    new_user.set_password(data['password'])
-    
-    # Generate OTP secret (legacy TOTP support)
-    new_user.otp_secret = pyotp.random_base32()
-    new_user.save()
-    
-    return jsonify({
-        "message": "User registered successfully.",
-        "user_id": str(new_user.id)
-    }), 201
+    try:
+        data = request.get_json() or {}
+        email = data.get('email')
+        password = data.get('password')
+        phone = data.get('phone')
+
+        if not email or not password:
+            return jsonify({"message": "Email and password are required"}), 400
+
+        if User.objects(email=email).first():
+            return jsonify({"message": "User already exists"}), 409
+        
+        new_user = User(email=email, phone=phone)
+        new_user.set_password(password)
+        
+        # Generate OTP secret (legacy TOTP support)
+        new_user.otp_secret = pyotp.random_base32()
+        new_user.save()
+        
+        return jsonify({
+            "message": "User registered successfully.",
+            "user_id": str(new_user.id)
+        }), 201
+    except Exception as e:
+        print(f"Registration Error: {str(e)}")
+        return jsonify({
+            "message": "Registration failed",
+            "error": str(e)
+        }), 500
 
 @auth_bp.route('/login', methods=['POST'])
 @limiter.limit("5 per minute")

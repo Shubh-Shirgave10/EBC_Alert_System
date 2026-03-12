@@ -304,6 +304,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ email, password, phone: signupVerifiedPhone })
                 });
 
+                const data = await response.json();
+
                 if (response.status === 201) {
                     alert("Registration Successful! Please Login.");
                     signupForm.reset();
@@ -311,10 +313,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     signupVerifiedPhone = '';
                     otpSection.hidden = true;
                     switchTab('login');
-                } else if (response.status === 409) {
-                    throw new Error('User already exists');
                 } else {
-                    throw new Error('Registration failed');
+                    throw new Error(data.error || data.message || 'Registration failed');
                 }
             } catch (error) {
                 alert(error.message);
