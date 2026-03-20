@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\DELL\\Downloads\\C# documents\\Admin_Login\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{80824A03-C44A-45C8-A660-8308FC204138}|Admin_Login.csproj|c:\\users\\dell\\downloads\\c# documents\\admin_login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{80824A03-C44A-45C8-A660-8308FC204138}|Admin_Login.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E247DAEF-B5D9-4EE9-B76D-5EB72589F7AA}|..\\Upload_page\\Upload_page.csproj|c:\\users\\dell\\downloads\\c# documents\\upload_page\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80824A03-C44A-45C8-A660-8308FC204138}|Admin_Login.csproj|C:\\Users\\DELL\\Downloads\\C# documents\\Admin_Login\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80824A03-C44A-45C8-A660-8308FC204138}|Admin_Login.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E247DAEF-B5D9-4EE9-B76D-5EB72589F7AA}|..\\Upload_page\\Upload_page.csproj|c:\\users\\dell\\downloads\\c# documents\\upload_page\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Downloads\\C# documents\\Admin_Login\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\DELL\\Downloads\\C# documents\\Admin_Login\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T17:57:32.959Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form2.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Downloads\\C# documents\\Upload_page\\Form2.cs",
+              "RelativeDocumentMoniker": "..\\Upload_page\\Form2.cs",
+              "ToolTip": "C:\\Users\\DELL\\Downloads\\C# documents\\Upload_page\\Form2.cs",
+              "RelativeToolTip": "..\\Upload_page\\Form2.cs",
+              "ViewState": "AgIAAKkAAAAAAAAAAADwv84AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T10:44:28.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form2.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\DELL\\Downloads\\C# documents\\Upload_page\\Form2.cs",
+              "RelativeDocumentMoniker": "..\\Upload_page\\Form2.cs",
+              "ToolTip": "C:\\Users\\DELL\\Downloads\\C# documents\\Upload_page\\Form2.cs [Design]",
+              "RelativeToolTip": "..\\Upload_page\\Form2.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T10:44:20.984Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\DELL\\Downloads\\C# documents\\Admin_Login\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\DELL\\Downloads\\C# documents\\Admin_Login\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T17:53:07.53Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
