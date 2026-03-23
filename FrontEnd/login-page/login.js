@@ -248,11 +248,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`${API_BASE}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password: passwordInput.value })
+                    body: JSON.stringify({ email: email.trim().toLowerCase(), password: passwordInput.value })
                 });
 
-                if (!response.ok) throw new Error('Invalid credentials');
                 const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || data.error || 'Login failed');
+                }
 
                 // Login successful — store tokens and redirect
                 localStorage.setItem('token', data.access_token);
@@ -301,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`${API_BASE}/api/auth/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password, phone: signupVerifiedPhone })
+                    body: JSON.stringify({ email: email.trim().toLowerCase(), password, phone: signupVerifiedPhone })
                 });
 
                 const data = await response.json();

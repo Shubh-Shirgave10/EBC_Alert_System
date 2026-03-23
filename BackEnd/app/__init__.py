@@ -44,7 +44,7 @@ def create_app():
     # Connect to MongoDB Atlas
     mongodb_uri = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/phisheye')
     # If the URI already includes a DB name (common in Atlas strings), db=... is redundant but safe
-    mongoengine.connect(host=mongodb_uri)
+    mongoengine.connect(host=mongodb_uri, db='phisheye')
 
     # Extensions
     CORS(app, resources={r"/api/*": {"origins": "*"}})
