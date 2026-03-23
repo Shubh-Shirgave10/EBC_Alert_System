@@ -1,4 +1,4 @@
-﻿// PARTICLE ANIMATION BACKGROUND - ANTIGRAVITY EFFECT
+// PARTICLE ANIMATION BACKGROUND - ANTIGRAVITY EFFECT
 (function initParticles() {
   const canvas = document.getElementById('particles');
   if (!canvas) return;
@@ -421,9 +421,7 @@ if (startBtn) {
 // WHY CARDS EXPAND
 document.querySelectorAll(".why-card").forEach(card => {
   card.addEventListener("click", () => {
-    let details = card.querySelector(".details");
-    details.style.display =
-      details.style.display === "block" ? "none" : "block";
+    card.classList.toggle('expanded');
   });
 });
 

@@ -43,7 +43,8 @@ def create_app():
 
     # Connect to MongoDB Atlas
     mongodb_uri = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/phisheye')
-    mongoengine.connect(host=mongodb_uri, db='phisheye')
+    # If the URI already includes a DB name (common in Atlas strings), db=... is redundant but safe
+    mongoengine.connect(host=mongodb_uri)
 
     # Extensions
     CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -51,8 +52,9 @@ def create_app():
     ma.init_app(app)
     limiter.init_app(app)
     
-    # Talisman for security headers
-    Talisman(app, content_security_policy=None)
+    # Talisman for security headers - disabled force_https for dev/local network testing
+    is_prod = os.getenv('FLASK_ENV') == 'production' or os.getenv('RENDER') is not None
+    Talisman(app, content_security_policy=None, force_https=is_prod)
     
     with app.app_context():
         # Import models to register them with mongoengine
